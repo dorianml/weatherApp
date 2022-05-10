@@ -9,14 +9,11 @@ const resultLatLng = document.getElementsByTagName('h2')[1]
 const weatherDisplay = document.getElementsByTagName('h3')[0]
 const API_KEY_loc = "9d4b2106584d4236b68d77703e0ec133"
 const API_KEY_weather = "6c601f4c97c69803c3d0ea71c97c199e"
-const imgWeather = document.getElementsByClassName('Weather_icone')
-const dateDisplay = document.getElementsByClassName('date')
+const dateDisplay = document.getElementById('date')
+const imgWeather = document.getElementById('Weather_icone')
     // creation de l'event du bouton et lancer les deux api
 submitButton.addEventListener("click", (event) => {
     event.preventDefault();
-    // affiché la Date
-
-        // 
     console.log(location.value)
     resultDisplay.innerHTML = `You are from ${location.value}!`
     const userLocation = location.value
@@ -33,7 +30,9 @@ submitButton.addEventListener("click", (event) => {
         // Récuperation de la Date du jour
         const newDate = new Date();
         const day = newDate.getDay()
-        dateDisplay.innerHTML = day
+        const week = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
+        const dayValue = week[day]
+        dateDisplay.innerHTML = dayValue
         // Récup des lat et long de l'API OpenCageData
     const cityWeatherLat = data.results[0].geometry.lat
     const cityWeatherLng = data.results[0].geometry.lng
@@ -61,10 +60,16 @@ submitButton.addEventListener("click", (event) => {
             weatherDisplay.innerHTML = `Shit, it's raining, don't forget your umbrella!`
             console.log(cityWeather.current.weather[0].main)
         }
+        else if (cityWeather.current.weather[0].id <= 622 && cityWeather.current.weather[0].id >= 600) {
+            weatherDisplay.innerHTML = `Snow* is falling*`
+        }
         else if (cityWeather.current.weather[0].main == 'Clear') {
             weatherDisplay.innerHTML = `The sky is Clear!`
-            document.create
+            // TODO: create picto innerHTML
+            // document.create
             console.log(cityWeather.current.weather[0].main)
+            console.log(cityWeather)
+
         }
     })
     })
