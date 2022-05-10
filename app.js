@@ -56,10 +56,6 @@ submitButton.addEventListener("click", (event) => {
             weatherDisplay.innerHTML = `It's cloudy!`
             console.log('CLOUDY')
         }
-        else if (cityWeather.current.weather[0].main == 'Rain') {
-            weatherDisplay.innerHTML = `Shit, it's raining, don't forget your umbrella!`
-            console.log(cityWeather.current.weather[0].main)
-        }
         else if (cityWeather.current.weather[0].id <= 622 && cityWeather.current.weather[0].id >= 600) {
             weatherDisplay.innerHTML = `Snow* is falling*`
         }
@@ -69,7 +65,10 @@ submitButton.addEventListener("click", (event) => {
             // document.create
             console.log(cityWeather.current.weather[0].main)
             console.log(cityWeather)
-
+        }
+        else {
+            weatherDisplay.innerHTML = `Shit, it's raining, don't forget your umbrella!`
+            console.log(cityWeather.current.weather[0].main)
         }
     })
     })
