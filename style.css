@@ -27,7 +27,7 @@ h3 {
     text-align: center;
 }
 #submit {
-    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-image: linear-gradient(to right, #00c6ff 0%, #0072ff  51%, #00c6ff  100%);
     height: 40px;
     border-radius: 10px;
     margin-left: 20px;
@@ -36,10 +36,60 @@ h3 {
     color: aliceblue;
     font-weight: 800;
     border: 0;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    
-    
+    background-size: 200% auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+    transition: 0.5s;
 }
+
+ #submit:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+ #day-select {
+    height: 38px;
+    width: 76px;
+    border-radius: 10px;
+    margin-left: 20px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: black;
+    font-weight: 800;
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+
+ }
+#formResult {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    margin-right: 50px;
+    margin-left: 50px;
+    color: black;
+}
+#formResult div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-right: 50px;
+    margin-left: 50px;
+    color: black;
+}
+
+#formResult img {
+    display: flex;
+    height: 60px;
+    width: auto;
+    margin-top: 20px;
+}
+
 #date {
     display: flex;
     text-align: center;
@@ -69,6 +119,4 @@ h3 {
     align-items: center;
     justify-content: center;
 }
-#weather_icone {
-    background: url();
-}
+
