@@ -52,7 +52,7 @@ submitButton.addEventListener("click", (event) => {
                 formDisplayResult.innerHTML = []
                 // Récuperation de la Date du jour
                 const currentDate = new Date();
-                const currentday = currentDate.getDay()
+                const currentDay = currentDate.getDay()
                 const weekDisplay = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
                             "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
                 // Fonction "choisir le nombre de jours prochains à afficher"
@@ -60,48 +60,62 @@ submitButton.addEventListener("click", (event) => {
                 nbOfDays = dayOption.value 
                 // boucle d'affichage de la météo des jours séléxctionnés
                 for (let i= 0; i < nbOfDays ; i++) {
-                    const dayValue = weekDisplay[currentday + i]
+
+                    const dayValue = weekDisplay[currentDay + i]
+                    console.log(dayValue)
+                    // const dayTextDisplay = document.createElement('p')
+                    // dayTextDisplay.innerHTML = dayValue
                     const dayDiv = document.createElement('div')
-                    dayDiv.classList.add('createdDays')
+                    // dayDiv.classList.add('createdDays')
                     dayDiv.innerHTML = dayValue
                     const iconeWeather = document.createElement('img')
-                    //TODO: function UVI 
-                    // Changer le background color du body selon la tranche horaire de l'utilisateur
+
                     if (cityWeather.current.uvi == 0) {
+                        var uviCheck = true
+                        //Nigth mode
                         document.getElementById("body").style.transition = "all 1s";
                         document.querySelector("body").style.background = "#06145F";  
+                        // document.getElementsByTagName(p).style.color = "#FFFFFF";  
                     } else {
                         document.getElementById("body").style.transition = "all 1s";
                         document.querySelector("body").style.background = "#3399FF"
                     }
-                    // display which day with corresponding weather
+                    
                     if (cityWeather.daily[i].weather[0].id == 803 || cityWeather.daily[i].weather[0].id == 804) {
                         console.log(cityWeather.daily[i].weather[0].id)
-                        iconeWeather.src = "./img/clouds.svg"
+                        if (uviCheck) {
+                            iconeWeather.src = "./img/clouds-white.png"
+                        } else iconeWeather.src = "./img/clouds.svg"
+
                     }
                     else if (cityWeather.daily[i].weather[0].id == 801 || cityWeather.daily[i].weather[0].id == 802) {
                         console.log(cityWeather.daily[i].weather[0].id)
-                        iconeWeather.src = "./img/cloudy.svg"
-                    
+                        if (uviCheck) {
+                            iconeWeather.src = "./img/cloudy_white.png"
+                        } else iconeWeather.src = "./img/cloudy.svg"
                     }
                     else if (cityWeather.daily[i].weather[0].id <= 622 && cityWeather.daily[i].weather[0].id >= 600) {
                         console.log(cityWeather.daily[i].weather[0].id)
-                        iconeWeather.src = "./img/snow.svg"
-                    
+                        if (uviCheck) {
+                            iconeWeather.src = "./img/snow-white.png"
+                        } else iconeWeather.src = "./img/snow.svg"
                     }
                     else if (cityWeather.daily[i].weather[0].id == 800) {
                         console.log(cityWeather.daily[i].weather[0].id)
-                        iconeWeather.src = "./img/sun.svg"
-                    
+                        if (uviCheck) {
+                            iconeWeather.src = "./img/sun-white.png"
+                        } else iconeWeather.src = "./img/sun.svg"
                     }   
                     else {
                         console.log(cityWeather.daily[i].weather[0].id)
-                        iconeWeather.src = "./img/rain.svg"
-                    
+                        if (uviCheck) {
+                            iconeWeather.src = "./img/rain-white.png"
+                        } else iconeWeather.src = "./img/rain.svg"
+                        
                     }
                     formDisplayResult.appendChild(dayDiv)
                     dayDiv.appendChild(iconeWeather)
-                    }
+                }
             })
             .catch(err=> console.log(err))
         })
