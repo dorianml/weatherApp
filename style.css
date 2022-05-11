@@ -1,4 +1,4 @@
-body {
+#body {
     margin: 0;
     padding: 0;
     background-color: rgb(156, 156, 156);
@@ -76,7 +76,7 @@ h3 {
     align-content: center;
     justify-items: center;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 40px;
     margin-right: 50px;
     margin-left: 50px;

@@ -56,21 +56,20 @@ submitButton.addEventListener("click", (event) => {
         const day = newDate.getDay()
         const week = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
                     "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
-
-        // TODO: day Number Value to select and put to "j" to change the loop length
-        // const dayOption = document.getElementsByClassName("nbDay")
-        // const dayOptStr = dayOption.value
-        // const dayOptionArray = dayOptStr.split("")
-        // console.log(dayOptionArray)
-        // let j = dayOptionArray[0]
-
-        if (dayOption.value)
-        for (let i= 0; i < 7; i++) {
+        // Fonction "choisir le nombre de jours prochains à afficher"
+        const dayOption = document.getElementById("day-select")
+        j = dayOption.value 
+        // boucle d'affichage de la météo des jours séléxctionnés
+        for (let i= 0; i < j; i++) {
             const dayValue = week[day + i]
             const dayDiv = document.createElement('div')
             dayDiv.innerHTML = dayValue
             const iconeWeather = document.createElement('img')
-            
+         // Changer le background color du body selon la tranche horaire de l'utilisateur
+            if (cityWeather.current.uvi = 0) {
+                document.querySelector("body").style.backgroundColor = "#00002B"
+                
+            }
             if (cityWeather.daily[i].weather[0].id == 803 || cityWeather.daily[i].weather[0].id == 804) {
                 console.log(cityWeather.daily[i].weather[0].id)
                 iconeWeather.src = "./img/clouds.svg"
