@@ -55,7 +55,7 @@ function displayWeather(cityWeather) {
         else if (iconeDisplayId == 801 || iconeDisplayId == 802) {
             console.log(iconeDisplayId)
             if (uviCheck) {
-                iconeWeather.src = "./img/cloudy_white.png"
+                iconeWeather.src = "./img/cloudy-white.png"
             } else iconeWeather.src = "./img/cloudy.svg"
         }
         else if (iconeDisplayId <= 622 && iconeDisplayId >= 600) {
@@ -119,12 +119,18 @@ document.addEventListener("DOMContentLoaded", function() {
     submitButton.addEventListener("click", (event) => {
         event.preventDefault();
         
+       
+        
+        
+        monStorage = localStorage;
         // INITIALISATION DE L'API LOCATION
         const location = document.getElementById("userLocation")
         const userLocation = location.value
-
+        
         const API_KEY_loc = "9d4b2106584d4236b68d77703e0ec133"
         let URL = `https://api.opencagedata.com/geocode/v1/json?q=${userLocation}&key=${API_KEY_loc}&language=fr&pretty=1`
+        console.log(URL)
+        
         
         fetch(URL) 
         .then(response => { 
@@ -134,15 +140,28 @@ document.addEventListener("DOMContentLoaded", function() {
             else console.log(`Erreur lorsqu'on a tenté de récupérer les data`);
         })
         .then(data => {
+            console.log(getCoord(data))
             return getCoord(data)
         }) 
         .then(coords => {
-            return getWeather(coords)
+            if (localStorage.getItem(userLocation)) {
+                console.log("récuperer ville localstorage")
+                return JSON.parse(localStorage.getItem(userLocation))
+            }else {
+                return getWeather(coords)
+            }
+            // console.log(getWeather(coords))
+            // return getWeather(coords)
         })    
         .then(cityWeather => { 
+            if (!localStorage.getItem(userLocation)) {
+                localStorage.setItem(userLocation, JSON.stringify(cityWeather))
+                console.log("creation ville localstorage")
+            }            
             displayWeather(cityWeather)
         })
         .catch(err=> console.log(err))
+        
     });
     //--------------------------------------------
 }); 
