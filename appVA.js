@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const submitButton = document.getElementById("submit")
     
     const API_KEY_loc = "9d4b2106584d4236b68d77703e0ec133"
-    const API_KEY_weather = "6c601f4c97c69803c3d0ea71c97c199e"
+    const API_KEY_weather = "6c601f4c97c69803c3d0ea71c97c199e"=
     
     submitButton.addEventListener("click", (event) => {
         event.preventDefault();
@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
            return getCoord(data)
         }) 
         .then(coords => {
+            function getWeather(coords) {
             let URL_weather = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude={part}&appid=${API_KEY_weather}`
             console.log(URL_weather)
             
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 else console.log(`Erreur lorsqu'on a tenté de récupérer les data Weather`);
             })
             .then(cityWeather => { 
+                function DisplayWeather(cityWeather) {
                 // reset le tableau au debut
                 // ask for user input number of days to display
                 const formDisplayResult = document.getElementById('formResult')                
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 for (let i= 0; i < daysToDisplay ; i++) {
                    // Appel function getTheme et return uviCheck en True ou False
                    const dayValue = getDayNumber().week[getDayNumber().currentDay + i]
-                   
+
                    const dayDiv = document.createElement('div')
                    dayDiv.innerHTML = dayValue
                    
@@ -129,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(err=> console.log(err))
             })
             .catch(err=> console.log(err))
-
+        
     });
     //--------------------------------------------
 });

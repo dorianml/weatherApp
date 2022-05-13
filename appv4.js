@@ -1,11 +1,4 @@
 // ########## FONCTIONS ##########
-
-function getCoord(data) {
-    const lat = data.results[0].geometry.lat
-    const lon = data.results[0].geometry.lng
-    return { lat, lon }
-}
-
 // THEME MODE FUNCTION
 function getTheme(uv) {
     if (uv == 0) {
@@ -57,8 +50,11 @@ document.addEventListener("DOMContentLoaded", function() {
             else console.log(`Erreur lorsqu'on a tenté de récupérer les data`);
         })
         .then(data => {
-           return getCoord(data)
-        }) 
+            const lat = data.results[0].geometry.lat
+            const lon = data.results[0].geometry.lng
+            return { lat, lon }
+        })
+        
         .then(coords => {
             let URL_weather = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude={part}&appid=${API_KEY_weather}`
             console.log(URL_weather)
@@ -71,24 +67,41 @@ document.addEventListener("DOMContentLoaded", function() {
                 else console.log(`Erreur lorsqu'on a tenté de récupérer les data Weather`);
             })
             .then(cityWeather => { 
+                
                 // reset le tableau au debut
-                // ask for user input number of days to display
-                const formDisplayResult = document.getElementById('formResult')                
                 formDisplayResult.innerHTML = []
+                
+                // ask for user input number of days to display
                 const daysToDisplay = document.getElementById("day-select").value
+                
+                const formDisplayResult = document.getElementById('formResult')                
+                
+                getDayNumber()
+                
+                // night mode
+                let uviCheck = false
 
+                // ...
                 for (let i= 0; i < daysToDisplay ; i++) {
+                    console.log(cityWeather.current.uvi);
+
                    // Appel function getTheme et return uviCheck en True ou False
-                   const dayValue = getDayNumber().week[getDayNumber().currentDay + i]
-                   
-                   const dayDiv = document.createElement('div')
-                   dayDiv.innerHTML = dayValue
-                   
-                   const iconeWeather = document.createElement('img')
+                    uviCheck = getTheme(cityWeather.current.uvi)
+                    console.log('uvicheck :'+ uviCheck);
+                    //
+                    
+                    const dayValue = getDayNumber.week[getDayNumber.currentDay + i]
+                    console.log(dayValue)
+                    const dayDiv = document.createElement('div')
+                    dayDiv.innerHTML = dayValue
+                    
+                    const iconeWeather = document.createElement('img')
 
-                   let uviCheck = false
-                   uviCheck = getTheme(cityWeather.current.uvi)
+                    // 
 
+                    //
+
+                    <
                     let iconeDisplayId = cityWeather.daily[i].weather[0].id
 
                     if (iconeDisplayId == 803 || iconeDisplayId == 804) {

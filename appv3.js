@@ -20,21 +20,22 @@ function getWeather(lat,lng) {
     })
     .then(cityWeather => { 
         formDisplayResult.innerHTML = []
+
+
+        function getDays(){
         const currentDate = new Date();
         const currentDay = currentDate.getDay()
         const weekDisplay = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
                     "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
-        const dayOption = document.getElementById("day-select")
-        nbOfDays = dayOption.value 
-
-        for (let i= 0; i < nbOfDays ; i++) {
             const dayValue = weekDisplay[currentDay + i]
             console.log(dayValue)
             const dayDiv = document.createElement('div')
             dayDiv.innerHTML = dayValue
-            const iconeWeather = document.createElement('img')
-            let uviCheck = false
+        }
 
+
+            let uviCheck = false
+            
             if (cityWeather.current.uvi == 0) {
                 uviCheck = true
                 document.getElementById("body").style.transition = "all 1s";
@@ -45,6 +46,8 @@ function getWeather(lat,lng) {
                 document.querySelector("body").style.background = "#3399FF"
                 document.querySelector("body").style.color = "#000000";  
             }
+            
+            const iconeWeat her = document.createElement('img')
 
             let iconeDisplayId = cityWeather.daily[i].weather[0].id
 
@@ -102,8 +105,13 @@ submitButton.addEventListener("click", (event) => {
     .then(data => {
         const cityWeatherLat = data.results[0].geometry.lat
         const cityWeatherLng = data.results[0].geometry.lng
-        .then(weather => {
-            getWeather(cityWeatherLat, cityWeatherLng)
+        //
+        getWeather(cityWeatherLat, cityWeatherLng)
+        //
+        const dayOption = document.getElementById("day-select")
+        nbOfDays = dayOption.value 
+        for (let i= 0; i < nbOfDays ; i++) {
+        getDays(i, nbOfDays,  )
         })
         })
         .catch(err=> console.log(err))
