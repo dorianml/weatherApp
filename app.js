@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 else console.log(`Erreur lorsqu'on a tenté de récupérer les data Weather`);
             })
             .then(cityWeather => { 
+                
                 // reset le tableau au debut
                 // ask for user input number of days to display
                 const formDisplayResult = document.getElementById('formResult')                
